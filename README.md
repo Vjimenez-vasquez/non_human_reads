@@ -1,5 +1,6 @@
-# non_human_reads
-collection of codes to obtain non-human reads
+# suggestions : compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
+
+# non_human_reads : a collection of codes to get non-human reads from fastq-files  
 
 ## The code 
 ```r
