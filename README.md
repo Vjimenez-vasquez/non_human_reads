@@ -1,6 +1,6 @@
-# suggestions : compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
+# non_human_reads : a collection of codes to get non-human reads from fastq-files by mapping against human reference genome (GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
 
-# non_human_reads : a collection of codes to get non-human reads from fastq-files by mapping against human genome (Homo sapiens reference genome GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
+# suggestions : compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
 
 ## The code 
 ```r
@@ -50,6 +50,6 @@ mv ${prefix}_spades/scaffolds.fasta ${prefix}_spades/${prefix}_spades_scaffolds.
 mv ${prefix}_spades/${prefix}_spades_scaffolds.fasta . ;
 done ;
 rmdir *fq_spades ;
-mv *scaffolds.fasta .. ;
+mv *scaffolds.fasta *contigs.fasta .. ;
 exit
 ```
