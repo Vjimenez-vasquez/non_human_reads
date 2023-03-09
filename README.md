@@ -25,7 +25,7 @@ samtools index -@ 15 ${prefix}.bam ;
 rm ${prefix}_uno.bam ${prefix}_uno.sam ${prefix}_unoa.bam ${prefix}_dosa.bam ${prefix}_tresa.bam ${prefix}_cuatroa.bam ;
 
 #4# obtencion de: 1)archivos bam condormado por solo reads No-mapeados y 2) fastq files "f" y "r" de estos reads mapeados#
-samtools view -b -f 5 ${prefix}.bam > ${prefix}.unmapped.bam ;
+samtools view -@ 15 -b -f 5 ${prefix}.bam > ${prefix}.unmapped.bam ;
 samtools index -@ 15 ${prefix}.unmapped.bam ;
 samtools fastq -1 ${prefix}_f.fq -2 ${prefix}_r.fq -0 /dev/null -s /dev/null -n ${prefix}.unmapped.bam ;
 
