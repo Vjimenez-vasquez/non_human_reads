@@ -18,7 +18,12 @@ samtools index -@ 15 ${prefix}.bam ;
 #3# remover los archivos intermediarios#
 rm ${prefix}_uno.bam ${prefix}_uno.sam ${prefix}_unoa.bam ${prefix}_dosa.bam ${prefix}_tresa.bam ${prefix}_cuatroa.bam ;
 
-#4# extraer del archivo .bam, todos los reads alineados con la referencia y generar dos fastq (f y r)#
+#4# obtencion de: 1)archivos bam condormado por solo reads No-mapeados y 2) fastq files "f" y "r" de estos reads mapeados#
+samtools view -@ 15 -b -f 5 ${prefix}.bam > ${prefix}.unmapped.bam ;
+samtools index -@ 15 ${prefix}.unmapped.bam ;
+samtools fastq -1 ${prefix}_f.fq -2 ${prefix}_r.fq -0 /dev/null -s /dev/null -n ${prefix}.unmapped.bam ;
+
+#4(alternative)# extraer del archivo .bam, todos los reads noalineados con la referencia y generar dos fastq (f y r)
 bam2fastq --no-aligned -o ${prefix}_unal#.fastq ${prefix}.bam ;
 done ;
 
@@ -46,5 +51,5 @@ mv ${prefix}_spades/scaffolds.fasta ${prefix}_spades/${prefix}_spades_scaffolds.
 mv ${prefix}_spades/${prefix}_spades_scaffolds.fasta . ;
 done ;
 rmdir *fq_spades ;
-mv *scaffolds.fasta .. ;
+mv *scaffolds.fasta *contigs.fasta .. ;
 exit
