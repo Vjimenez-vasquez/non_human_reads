@@ -1,6 +1,8 @@
-# non_human_reads : a collection of codes to get non-human reads from fastq-files by mapping against human reference genome (GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
+# non_human_reads
+A collection of codes to get non-human reads from fastq-files by mapping against human reference genome (GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
 
-# suggestions : compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
+# suggestions
+compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
 
 ## The code 
 ```r
@@ -22,7 +24,12 @@ samtools index -@ 15 ${prefix}.bam ;
 #3# remover los archivos intermediarios#
 rm ${prefix}_uno.bam ${prefix}_uno.sam ${prefix}_unoa.bam ${prefix}_dosa.bam ${prefix}_tresa.bam ${prefix}_cuatroa.bam ;
 
-#4# extraer del archivo .bam, todos los reads alineados con la referencia y generar dos fastq (f y r)
+#4# obtencion de: 1)archivos bam condormado por solo reads No-mapeados y 2) fastq files "f" y "r" de estos reads mapeados#
+samtools view -b -f 5 ${prefix}.bam > ${prefix}.unmapped.bam ;
+samtools index -@ 15 ${prefix}.unmapped.bam ;
+samtools fastq -1 ${prefix}_f.fq -2 ${prefix}_r.fq -0 /dev/null -s /dev/null -n ${prefix}.unmapped.bam ;
+
+#4(alternative)# extraer del archivo .bam, todos los reads noalineados con la referencia y generar dos fastq (f y r)
 bam2fastq --no-aligned -o ${prefix}_unal#.fastq ${prefix}.bam ;
 done ;
 
