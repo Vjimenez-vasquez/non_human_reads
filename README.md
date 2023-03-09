@@ -1,8 +1,12 @@
 # non_human_reads
-A collection of codes to get non-human reads from fastq-files by mapping against human reference genome (GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
+A collection of codes to get non-human reads from fastq-files by mapping against human reference genome last version
+
+(GRCh38.p14, https://www.ncbi.nlm.nih.gov/search/all/?term=human%20genome) 
 
 # suggestions
-compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com) 
+compiled by Victor Jiménez-Vásquez (vr.jimenez.vs@gmail.com)
+
+samtools flags explanation : https://broadinstitute.github.io/picard/explain-flags.html
 
 ## The code 
 ```r
