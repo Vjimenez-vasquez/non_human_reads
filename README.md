@@ -10,6 +10,9 @@ samtools flags explanation : https://broadinstitute.github.io/picard/explain-fla
 
 ## The code 
 ```r
+#0# indexar el genoma de referencia (en caso del genoma humano, contar con todo el genoma indexado en una carpeta fija)#
+bwa index reference.fasta
+
 #1# preparar las instrucciones generales#
 for r1 in *fastq.gz
 do
@@ -31,7 +34,7 @@ rm ${prefix}_uno.bam ${prefix}_uno.sam ${prefix}_unoa.bam ${prefix}_dosa.bam ${p
 #4# obtencion de: 1)archivos bam condormado por solo reads No-mapeados y 2) fastq files "f" y "r" de estos reads mapeados#
 samtools view -@ 15 -b -f 5 ${prefix}.bam > ${prefix}.unmapped.bam ;
 samtools index -@ 15 ${prefix}.unmapped.bam ;
-samtools fastq -1 ${prefix}_f.fq -2 ${prefix}_r.fq -0 /dev/null -s /dev/null -n ${prefix}.unmapped.bam ;
+samtools fastq -1 ${prefix}_f.fastq -2 ${prefix}_r.fastq -0 /dev/null -s /dev/null -n ${prefix}.unmapped.bam ;
 
 #4(alternative)# extraer del archivo .bam, todos los reads noalineados con la referencia y generar dos fastq (f y r)
 bam2fastq --no-aligned -o ${prefix}_unal#.fastq ${prefix}.bam ;
